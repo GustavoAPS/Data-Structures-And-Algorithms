@@ -2,11 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int *fila;
+
 void CriarFila(int tamanho_da_fila){
 
-int fila[tamanho_da_fila];
-printf("fila de tamanho %d criada\n", tamanho_da_fila);
+    int fila_local[tamanho_da_fila];
+    
+    fila = (char *) malloc(tamanho_da_fila);
 
+    printf("fila de tamanho %d criada\n", tamanho_da_fila);
+    
 }
 
 void InserirFila(int numero_inserido){
