@@ -5,9 +5,21 @@
 
 
 }
-    void InserirFila();
-    void RemoverFila();
-    void FilaCheia();
-    void FilaVazia();
-    void TamanhoFila();
-    void ImprimirFila();
+  void InserirFila(){
+
+    }
+    void RemoverFila(){
+
+    }
+    void FilaCheia(){
+
+    }
+    void FilaVazia(){
+
+    }
+    void TamanhoFila(){
+
+    }
+    void ImprimirFila(){
+      
+    }
