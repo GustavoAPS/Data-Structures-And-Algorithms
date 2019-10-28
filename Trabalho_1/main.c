@@ -23,7 +23,7 @@ do
          
        case 1:
 
-          
+          //CriarFila();
         printf("Digite quantos elementos voce deseja inserir:\n");
                 scanf("%d", &n);
                InserirFila(n);
@@ -34,20 +34,20 @@ do
          printf("Digite quantos elementos voce deseja remover:\n");
           scanf("%d", &n);
           RemoverFila(n);
-          printf("Elemento removido: %d\n", n);  
+          //printf("Elemento removido: %d\n", n);  
 
          break;
        
          case 3:
            
-          printf("Imprimir a fila\n");
-          //ImprimirFila( );
+          
+          ImprimirFila(5);
       
          break;
          
          case 4:
            
-         printf("Imprimir a fila\n");
+         
             break;
          
        }

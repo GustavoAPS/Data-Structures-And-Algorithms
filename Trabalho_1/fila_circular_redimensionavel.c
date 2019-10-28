@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 int * fila; 
-int inic=0 ,fim=0, N; 
+int inic=0 ,fim=0, N,x; 
 
 void CriarFila(){
 
@@ -16,16 +16,20 @@ void CriarFila(){
 
 
 }
+
 void InserirFila(int x){
-    if ((fim + 1) %N == inic)// fila cheia 
+    if ((fim + 1) %N == inic) return 0;// fila cheia 
         if(redimensionar())
         fila [fim]= x;
         fim =(fim +1)% N; return 1; 
 
 }
-void RemoverFila(int x){
+void libera(){
+    free(fila);
+}
+void RemoverFila(int *x){
     if (inic == fim) return 0;// fila vazia 
-    *x = fila [inic];
+     *x = fila [inic];
     inic = (inic + 1)%N; return 1;
 }
 void FilaCheia(){
@@ -36,36 +40,70 @@ void FilaVazia(){
 
 }
 void TamanhoFila(){
+     int total = fim-inic;
+    if(inic > fim){
+        total = N + total;
+    }
+    return total;
+}
+void ImprimirFila(  ){
+      printf("-------------------------------------------------------------\n|");
+    for(int i = 0; i < N; i++){
+        if(fila[i] == 0){
+            printf(" xxx |");
+        }
+        else{
+            printf("  %d  |", fila[i]);
+        }
+    }
+    printf("\n-------------------------------------------------------------\n");
+    if(inic == 0 && fim == 0){
+        printf("p  u\n");
+    }
+    else{
+        for(int i = 0; i < N; i++){
+            if(fila[i] != 0){
+                printf(" p ");
+                break;
+            }
+            else{
+                printf("    ");
+            }
+        }
+        for(int i = 0; i < N; i++){
+            if(fila[i] != 0 && fila[i+1] == 0){
+                printf("  u  \n");
+                break;
+            }
+                else{
+                printf("     ");
+            }
+        }
+    }
+}
+    
 
-}
-void ImprimirFila(){
-    if(inic == fim){
-        printf ("Fila está fazia\n");
-    }
-    else
-    {
-        
-    }
-    
-    
-}
 int redimensionar(){
-        int j;
-   fila = realloc(fila,2*N*sizeof(int));
-	
-	if(inic>fim){
-
-	  if(N-inic > fim){
-		for(int i = 0; j=N; i>N; i++;j++)
-			fila[j]=fila[i];
-				fim=N+fim;		
-		
-		}
-		
-	}
-
-	else 
-		for(int i=N-1; j=2*N-1; i>=inic; i--;j--)
-			fila[j]=fila[i]; inic= j+1;//inic=N+inic;
-		
+    int i, j;
+    fila = realloc(fila, 2 * N * sizeof(int));
+    if(fila == NULL){
+        return 0;
+    }
+    if(fim != N - 1){
+        if(fim-1 < N - inic){
+            for(i = N, j = 0; j < fim; i++, j++){
+                fila[i] = fila[j];
+            }
+            fim = N + fim;
+        }
+        else{
+            for(i = inic, j = N + inic; i < N; i++, j++){
+                fila[j] = fila[i];
+            }
+            inic = N + inic;
+        }
+    }
+    
+    N *= 2;
+    return 1;
 }
