@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 int * fila; 
-int inic=0 ,fim=0, N,x; 
+int inic=0 ,fim=0, N,x,n; 
 
 void CriarFila(){
 
@@ -15,22 +15,39 @@ void CriarFila(){
         return 1;
 
 
+
 }
 
 void InserirFila(int x){
-    if ((fim + 1) %N == inic) return 0;// fila cheia 
-        if(redimensionar())
-        fila [fim]= x;
-        fim =(fim +1)% N; return 1; 
-
+    printf("Digite quantos elementos voce deseja inserir:\n");
+            scanf("%d", &x);
+            int retono=1;
+    if (FilaCheia()) {
+        retono=redimensionar();
+    }
+    if(retono){
+        fila[fim++]= x;
+        if (fim == N)
+        {
+            fim = 0;
+        }
+    }
 }
 void libera(){
     free(fila);
 }
 void RemoverFila(int *x){
-    if (inic == fim) return 0;// fila vazia 
-     *x = fila [inic];
-    inic = (inic + 1)%N; return 1;
+     printf("Digite quantos elementos voce deseja remover:\n");
+      scanf("%d", x);
+    if (FilaCheia()) { 
+     *x = fila [inic++];
+     if (inic == N){
+        inic = 0;
+     }
+     return 1;
+     return 0;
+    }
+   
 }
 void FilaCheia(){
         return ((fim + 1) % N== inic);
@@ -40,11 +57,11 @@ void FilaVazia(){
 
 }
 void TamanhoFila(){
-     int total = fim-inic;
+     int t = fim-inic;
     if(inic > fim){
-        total = N + total;
+        t = N + t;
     }
-    return total;
+    return t;
 }
 void ImprimirFila(  ){
       printf("-------------------------------------------------------------\n|");
