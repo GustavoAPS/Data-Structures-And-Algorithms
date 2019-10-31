@@ -12,10 +12,11 @@
 
     }
     void FilaCheia(){
+      
 
     }
     void FilaVazia(){
-
+          fila -> NULL;
     }
     void TamanhoFila(){
 

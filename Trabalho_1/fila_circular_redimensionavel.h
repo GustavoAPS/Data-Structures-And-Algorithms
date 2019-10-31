@@ -1,12 +1,15 @@
 #ifndef  FILA_CIRCULAR_REDIMENSIONAL_H
 #define  FILA_CIRCULAR_REDIMENSIONAL_H
 
-    void CriarFila();
-    void InserirFila();
-    void RemoverFila();
-    void FilaCheia();
-    void FilaVazia();
-    void TamanhoFila();
+    //int fim;
+
+    int  CriarFila();
+    int InserirFila();
+    int RemoverFila();
+    int FilaCheia();
+    int FilaVazia();
+    int  TamanhoFila();
     void ImprimirFila();
+
 
 #endif

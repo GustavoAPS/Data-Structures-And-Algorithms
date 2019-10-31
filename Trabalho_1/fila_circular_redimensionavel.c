@@ -1,9 +1,10 @@
 #include<stdio.h>
-
+#include<stdlib.h>
+#include "fila_circular_redimensionavel.h"
 int * fila; 
-int inic=0 ,fim=0, N,x,n; 
+int inic ,fim ,  N,x,n; 
 
-void CriarFila(){
+int CriarFila(){
 
     inic = 0;
     fim = 0;
@@ -18,10 +19,9 @@ void CriarFila(){
 
 }
 
-void InserirFila(int x){
-    printf("Digite quantos elementos voce deseja inserir:\n");
-            scanf("%d", &x);
-            int retono=1;
+int InserirFila(int x){
+
+    int retono=1;
     if (FilaCheia()) {
         retono=redimensionar();
     }
@@ -32,31 +32,36 @@ void InserirFila(int x){
             fim = 0;
         }
     }
+        return retono;
+    
 }
 void libera(){
     free(fila);
 }
-void RemoverFila(int *x){
-     printf("Digite quantos elementos voce deseja remover:\n");
-      scanf("%d", x);
-    if (FilaCheia()) { 
+int RemoverFila(int *x){
+    
+    if (!FilaVazia()) { 
      *x = fila [inic++];
      if (inic == N){
         inic = 0;
-     }
+     
      return 1;
+     }
+     else {
+
      return 0;
-    }
-   
+     }
+    
+    } 
 }
-void FilaCheia(){
+int FilaCheia(){
         return ((fim + 1) % N== inic);
 }
-void FilaVazia(){
+int FilaVazia(){
       return (inic==fim);
 
 }
-void TamanhoFila(){
+int TamanhoFila(){
      int t = fim-inic;
     if(inic > fim){
         t = N + t;
@@ -66,7 +71,7 @@ void TamanhoFila(){
 void ImprimirFila(  ){
       printf("-------------------------------------------------------------\n|");
     for(int i = 0; i < N; i++){
-        if(fila[i] == 0){
+        if(i< inic || i>= fim){
             printf(" xxx |");
         }
         else{
