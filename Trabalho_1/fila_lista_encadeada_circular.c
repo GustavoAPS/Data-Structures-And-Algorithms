@@ -5,7 +5,7 @@
 typedef struct Node
  
 {
-	int info;
+	int informacao;
 	struct Node *next;
 }node;
  
@@ -14,39 +14,47 @@ node *front=NULL,*rear=NULL,*temp;
 
   void CriarFila(){
 
-	node *newnode;
-	newnode=(node*)malloc(sizeof(node));
-	printf("\nEnter the node value : ");
-	scanf("%d",&newnode->info);
-	newnode->next=NULL;
-	if(rear==NULL)
-	front=rear=newnode;
-	else
-	{
-		rear->next=newnode;
-		rear=newnode;
-	}
+  }
+
+  void libera()
+  {
+
+  }
+
+  void InserirFila( int numero_para_incerir)
+  {
+	  node *newnode;
+	  newnode=(node*)malloc(sizeof(node));
+	  newnode->informacao = numero_para_incerir;
+	  newnode->next=NULL;
+
+	  if(rear==NULL)
+	    front=rear=newnode;
+	  else
+	  {
+		  rear->next=newnode;
+		  rear=newnode;
+	  }
 	
 	rear->next=front;
   }
-  void InserirFila(){
 
-    }
-    void RemoverFila(){
+  void RemoverFila()
+  {
 
 	temp=front;
 	if(front==NULL)
-		printf("\nUnderflow :");
+		printf("\nTentativa invalida de retirada");
 	else
 	{
 		if(front==rear)
 		{
-			printf("\n%d",front->info);
+			printf("\n%d",front->informacao);
 			front=rear=NULL;
 		}
 		else
 		{
-			printf("\n%d",front->info);
+			printf("\n%d",front->informacao);
 			front=front->next;
 			rear->next=front;
 		}
@@ -65,16 +73,19 @@ node *front=NULL,*rear=NULL,*temp;
     void TamanhoFila(){
 
     }
-    void ImprimirFila(){
-	temp=front;
-	if(front==NULL)
-		printf("\nEmpty");
-	else
-	{
-		printf("\n");
-		for(;temp!=rear;temp=temp->next)
-			printf("\n%d address=%u next=%u\t",temp->info,temp,temp->next);
-			printf("\n%d address=%u next=%u\t",temp->info,temp,temp->next);
-	}      
+    void ImprimirFila()
+    {
+	  temp=front;
+
+	  if(front==NULL)
+		  printf("\nFila vazia");
+	  else
+	  {
+		  printf("\n");
+		  for(;temp!=rear;temp=temp->next)
+		  printf(" %d ",temp->informacao);
+		  printf(" %d ",temp->informacao);
+		  printf("\n");
+	  }      
     }
 

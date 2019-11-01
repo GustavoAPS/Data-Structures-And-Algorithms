@@ -8,8 +8,8 @@
 int main(){
 
   int opc = 0;
-  int num=0;
-    CriarFila();
+  int num = 0;
+  CriarFila();
 
   while(opc != 5){
 
@@ -25,29 +25,41 @@ int main(){
     if(opc == 1){
       printf("Digite quantos elementos voce deseja inserir:\n");
       scanf("%d", &num);
-      InserirFila(num);
-      
+
+      for (int j = 0 ; j < num ; j++)
+      {
+        int n;
+        printf("\nDigite o numero para inserir:");
+        scanf("%d", &n);
+        InserirFila(n);
+      }
     }
 
     if(opc == 2){
-     
-     printf("Digite quantos elementos voce deseja remover:\n");
+
+      printf("Digite quantos elementos voce deseja remover:\n");
+
       scanf("%d", &num);
-      for(int i=0; i< num, RemoverFila(); i++){
-      RemoverFila();
+      
+      for(int ii=0; ii < num; ii++)
+      {
+        RemoverFila();
       }
            
     }
 
-    if(opc == 3){
+    if(opc == 3)
+    {
       ImprimirFila();
-
     }
-    if(opc == 4){
-      libera();
 
-  }
-  if(opc == 5){
+    if(opc == 4)
+    {
+      libera();
+    }
+
+    if(opc == 5)
+    {
 
     }
   }
