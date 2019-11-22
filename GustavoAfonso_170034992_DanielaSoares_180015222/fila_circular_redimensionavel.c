@@ -14,9 +14,7 @@ int CriarFila(){
         if (fila == NULL);
         return 0;
         return 1;
-
-
-
+        
 }
 
 int InserirFila(int x){

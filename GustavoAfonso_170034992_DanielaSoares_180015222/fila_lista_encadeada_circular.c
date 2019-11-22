@@ -75,17 +75,16 @@ node *front=NULL,*rear=NULL,*temp;
     }
     void ImprimirFila()
     {
+      printf("-------------------------------------------------------------\n|");
 	  temp=front;
 
 	  if(front==NULL)
 		  printf("\nFila vazia");
 	  else
 	  {
-		  printf("\n");
 		  for(;temp!=rear;temp=temp->next)
-		  printf(" %d ",temp->informacao);
-		  printf(" %d ",temp->informacao);
-		  printf("\n");
+		  printf(" %d |",temp->informacao);
+		  printf(" %d |",temp->informacao);
 	  }      
+      printf("\n-------------------------------------------------------------\n|");
     }
-

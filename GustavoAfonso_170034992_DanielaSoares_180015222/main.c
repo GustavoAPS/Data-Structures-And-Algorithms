@@ -2,8 +2,8 @@
 #include<stdlib.h>
 
 //#include "fila_vetor_tamanho_fixo.h"
-#include "fila_circular_redimensionavel.h"
-//#include "fila_lista_encadeada_circular.h"
+//#include "fila_circular_redimensionavel.h"
+#include "fila_lista_encadeada_circular.h"
 
 int main(){
 
@@ -23,6 +23,7 @@ int main(){
     scanf("%d", &opc);
   
     if(opc == 1){
+
       printf("Digite quantos elementos voce deseja inserir:\n");
       scanf("%d", &num);
 
@@ -40,7 +41,7 @@ int main(){
       printf("Digite quantos elementos voce deseja remover:\n");
 
       scanf("%d", &num);
-      
+
       for(int ii=0; ii < num; ii++)
       {
         RemoverFila();
