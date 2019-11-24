@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h> 
   
+//Funcoes obrigatorias  
 void CadastraEstado();           
 void CadastraCurso();            
 void CadastraPessoa();           
@@ -9,7 +10,10 @@ void ListaPessoasPorEstado();
 void ListaPessoasPorCurso();     
 void ConsultaPessoaPorNome();    
 void GeraRelatorioDemografico(); 
-void ApagaPessoaDoSistema();     
+void ApagaPessoaDoSistema();
+
+int VerificaValidadeDeEstado( char EstadoParaValidar[] );
+int VerificaValidadeDeCurso( char CursoParaValidar[] );
 
 int main()
 {
@@ -37,41 +41,60 @@ while (opcao_menu >=1 && opcao_menu <=8)
     if(opcao_menu == 1)
     {
         CadastraEstado();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
     }
 
     if(opcao_menu == 2)
     {
         CadastraCurso();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
     }
 
     if(opcao_menu == 3)
     {
         CadastraPessoa();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
     }
 
     if(opcao_menu == 4)
     {
         ListaPessoasPorEstado();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
     }
 
     if(opcao_menu == 5)
     {
         ListaPessoasPorCurso();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
+
     }
 
     if(opcao_menu == 6)
     {
         ConsultaPessoaPorNome();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
+
     }
 
     if(opcao_menu == 7)
     {
         GeraRelatorioDemografico();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
+
     }
     
     if(opcao_menu == 8)
     {
         ApagaPessoaDoSistema();
+        printf("\nPressione enter para voltar ao menu\n");
+        getchar();  
     }
 
 }
@@ -93,14 +116,20 @@ void CadastraEstado()//EstadosCadastrados.txt
     else
     {
 
-    char text[999];
+    char text[99];
 
-    printf("\nDigite o estado para cadastrar:\n");
-    scanf("%s", text);
+    getchar();  
+    printf("\nDigite o estado para cadastrar:\n");  
+    gets(text);
+
+    for(int i = 0; i < strlen(text); i++)
+    {
+        text[i] = tolower(text[i]);
+    }
 
     fprintf(Arquivo_De_Estados_Cadastrados, "%s\n", text);
-
     fclose(Arquivo_De_Estados_Cadastrados);
+
     }
 }
 
@@ -117,11 +146,16 @@ void CadastraCurso()
     }
     else
     {
-
     char text[999];
 
-    printf("\nDigite o curso para cadastrar:\n");
-    scanf("%s", text);
+    getchar();  
+    printf("\nDigite o curso para cadastrar:\n");  
+    gets(text);
+
+    for(int i = 0; i < strlen(text); i++)
+    {
+        text[i] = tolower(text[i]);
+    }
 
     fprintf(Arquivo_De_Cursos_Cadastrados, "%s\n", text);
 
@@ -152,8 +186,10 @@ void CadastraPessoa()
     //getchar();  
     printf("\nDigite o nome da unidade da federacao:\n");
     gets(unidade_da_federacao);
-    //getchar();  
-    
+
+    int informacao_correta_estado = VerificaValidadeDeEstado(unidade_da_federacao);
+    int informacao_correta_curso   = VerificaValidadeDeCurso (curso_desejado);
+
     FILE *Arquivo_De_Alunos_Cadastrados;
 
     Arquivo_De_Alunos_Cadastrados = fopen("AlunosCadastrados.csv", "a");
@@ -164,14 +200,51 @@ void CadastraPessoa()
         exit(1);
     }
 
+    for(int i = 0; i < strlen(nome_completo); i++)
+    {
+        nome_completo[i] = tolower(nome_completo[i]);
+    }
+    for(int i = 0; i < strlen(sexo); i++)
+    {
+        sexo[i] = tolower(sexo[i]);
+    }
+    for(int i = 0; i < strlen(data_de_nascimento); i++)
+    {//55
+        data_de_nascimento[i] = tolower(data_de_nascimento[i]);
+    }
+
+    for(int i = 0; i < strlen(curso_desejado); i++)
+    {//55
+        curso_desejado[i] = tolower(curso_desejado[i]);
+    }
+
+    for(int i = 0; i < strlen(unidade_da_federacao); i++)
+    {//55
+        unidade_da_federacao[i] = tolower(unidade_da_federacao[i]);
+    }
+
+    if(informacao_correta_estado == 1 && informacao_correta_curso == 1)
+    {
+
     fprintf(Arquivo_De_Alunos_Cadastrados, "%s,", nome_completo);
     fprintf(Arquivo_De_Alunos_Cadastrados, "%s,", sexo);
     fprintf(Arquivo_De_Alunos_Cadastrados, "%s,", data_de_nascimento);
     fprintf(Arquivo_De_Alunos_Cadastrados, "%s,", curso_desejado);
     fprintf(Arquivo_De_Alunos_Cadastrados, "%s", unidade_da_federacao);
     fprintf(Arquivo_De_Alunos_Cadastrados, "\n");
+    }else
+    {
+        printf("Cadastro sem sucesso\n");
+        
+        if(informacao_correta_curso == 0)
+            printf("Curso nao cadastrado\n");
+    
+        if(informacao_correta_estado == 0)
+            printf("estado nao cadastrado\n");
+    }
 
     fclose(Arquivo_De_Alunos_Cadastrados);
+
 }
 
 void ListaPessoasPorEstado()
@@ -493,7 +566,8 @@ void ApagaPessoaDoSistema()
     char texto[1001] = ""; //Uma string larga o suficiente para extrair o texto total de cada linha.
     unsigned int linha_atual = 0;
 
-    while(fgets(texto, 1001, input) != NULL){
+    while(fgets(texto, 1001, input) != NULL)
+    {
         if(linha_atual != linha_selecionada){
             fputs(texto, output);
         }
@@ -505,4 +579,83 @@ void ApagaPessoaDoSistema()
     fclose(output);
     remove("AlunosCadastrados.csv");
     rename("transferindo.txt", "AlunosCadastrados.csv");
+}
+
+int VerificaValidadeDeEstado( char EstadoParaValidar[1000] )
+{
+
+    EstadoParaValidar[strlen(EstadoParaValidar)] = '\n';
+
+    int EstadoValido = 0; // 0 para estado invalido, 1 para estado valido
+
+    double masculino = 0;
+    double feminino = 0;
+    double porcentagem_masculina;
+    double porcentagem_feminina;
+
+    FILE *Arquivo_De_Alunos_Cadastrados;      
+
+    char dataToBeRead[99999] = {}; 
+  
+    Arquivo_De_Alunos_Cadastrados = fopen("EstadosCadastrados.txt", "r") ; 
+      
+    if ( Arquivo_De_Alunos_Cadastrados == NULL ) 
+    { 
+        printf( "Falha ao tentar abrir AlunosCadastrados.csv " ) ; 
+    } 
+    else
+    {    
+        int numero_de_linhas = 0;
+
+        while( fgets ( dataToBeRead, 99999, Arquivo_De_Alunos_Cadastrados ) != NULL ) 
+        {
+            if(strcmp(dataToBeRead,EstadoParaValidar) == 0)
+            {
+                EstadoValido = 1;
+            }
+            numero_de_linhas++; 
+        }
+
+        fclose(Arquivo_De_Alunos_Cadastrados) ; 
+    }
+return EstadoValido;
+}
+
+int VerificaValidadeDeCurso( char CursoParaValidar[1000] )
+{
+
+    CursoParaValidar[strlen(CursoParaValidar)] = '\n';
+
+    int CursoValido = 0; // 0 para estado invalido, 1 para estado valido
+
+    FILE *Arquivo_De_Alunos_Cadastrados;      
+
+    char dataToBeRead[99999] = {}; 
+  
+    Arquivo_De_Alunos_Cadastrados = fopen("CursosCadastrados.txt", "r") ; 
+      
+    if ( Arquivo_De_Alunos_Cadastrados == NULL ) 
+    { 
+        printf( "Falha ao tentar abrir AlunosCadastrados.csv " ) ; 
+    } 
+    else
+    {    
+        int numero_de_linhas = 0;
+
+        while( fgets ( dataToBeRead, 99999, Arquivo_De_Alunos_Cadastrados ) != NULL ) 
+        {
+
+            //printf( "\n%s\n%s\n\n" ,dataToBeRead,EstadoParaValidar);
+            //printf( "\n%d\n%d\n\n" , strlen(dataToBeRead), strlen(EstadoParaValidar));
+
+            if(strcmp(dataToBeRead,CursoParaValidar) == 0)
+            {
+                CursoValido = 1;
+            }
+            numero_de_linhas++; 
+        }
+
+        fclose(Arquivo_De_Alunos_Cadastrados) ; 
+    }
+return CursoValido;
 }
