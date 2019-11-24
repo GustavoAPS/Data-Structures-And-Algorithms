@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h> 
   
-void CadastraEstado();           //OK
-void CadastraCurso();            //OK
-void CadastraPessoa();           //OK
-void ListaPessoasPorEstado();    //OK
-void ListaPessoasPorCurso();     //
-void ConsultaPessoaPorNome();    //
-void GeraRelatorioDemografico(); //
-void ApagaPessoaDoSistema();     //
+void CadastraEstado();           
+void CadastraCurso();            
+void CadastraPessoa();           
+void ListaPessoasPorEstado();    
+void ListaPessoasPorCurso();     
+void ConsultaPessoaPorNome();    
+void GeraRelatorioDemografico(); 
+void ApagaPessoaDoSistema();     
 
 int main()
 {
@@ -294,7 +294,7 @@ void ListaPessoasPorCurso()
 void ConsultaPessoaPorNome()
 {
     printf("\nFuncao consulta pessoa por nome chamada\n");
-       printf("Digite o nome do aluno para pesquisar:\n\n");
+    printf("Digite o nome do aluno para pesquisar:\n\n");
     getchar();
 
     char nome_da_pessoa_para_pesquisar[999] = {};
@@ -426,11 +426,73 @@ void GeraRelatorioDemografico()
 
 void ApagaPessoaDoSistema()
 {
+
+    unsigned int linha_selecionada = 0;
+
+    printf("\nFuncao excluir cadastro chamada\n");
+    printf("Digite o nome do aluno para excluir:\n\n");
+    getchar();
+
+    char nome_da_pessoa_para_pesquisar[999] = {};
+    gets(nome_da_pessoa_para_pesquisar);
+    
+    FILE *Arquivo_De_Alunos_Cadastrados;      
+
+    char dataToBeRead[99999] = {}; 
+  
+    Arquivo_De_Alunos_Cadastrados = fopen("AlunosCadastrados.csv", "r") ; 
+      
+    if ( Arquivo_De_Alunos_Cadastrados == NULL ) 
+    { 
+        printf( "Falha ao tentar abrir AlunosCadastrados.csv " ) ; 
+    } 
+    else
+    {    
+        printf("O arquivo AlunosCadastrados.csv foi aberto.\n") ; 
+          
+        int numero_de_linhas = 0;
+
+        while( fgets ( dataToBeRead, 99999, Arquivo_De_Alunos_Cadastrados ) != NULL ) 
+        {
+            char curso_desejado_tmp[999] = {};            
+            int info = 0;
+            int string_aux_cont = 0;
+
+            for(int i = 0; i < strlen(dataToBeRead) ; i++)
+            {
+                if(dataToBeRead[i] == ',')
+                {
+                    info++;
+                }
+                if(info == 0 && dataToBeRead[i] != ',' && i < strlen(dataToBeRead) - 1)
+                {            
+                    curso_desejado_tmp[string_aux_cont] = dataToBeRead[i];
+                    string_aux_cont ++ ;
+                }
+            }
+
+            printf( "\n%s\n%s\n\n" ,curso_desejado_tmp, nome_da_pessoa_para_pesquisar);
+
+            if(strcmp(curso_desejado_tmp,nome_da_pessoa_para_pesquisar) == 0)
+            {
+            printf("cadastro N.%d = %s \n" ,numero_de_linhas, dataToBeRead);
+            linha_selecionada = numero_de_linhas;
+            printf("%d\n", linha_selecionada);
+            }
+            numero_de_linhas++; 
+        } 
+          
+        fclose(Arquivo_De_Alunos_Cadastrados) ; 
+
+        printf("\n\nInformacoes de AlunosCadastrados.csv lidas com sucesso\n");           
+        printf("Arquivo fechado.\n") ; 
+    } 
+
     FILE *input = fopen("AlunosCadastrados.csv", "r"); //Arquivo de entrada.
     FILE *output = fopen("transferindo.txt", "w"); //Arquivo de saída.
     char texto[1001] = ""; //Uma string larga o suficiente para extrair o texto total de cada linha.
-    unsigned int linha_selecionada = 0;
-    unsigned int linha_atual = 1;
+    unsigned int linha_atual = 0;
+
     while(fgets(texto, 1001, input) != NULL){
         if(linha_atual != linha_selecionada){
             fputs(texto, output);
@@ -438,6 +500,7 @@ void ApagaPessoaDoSistema()
         memset(texto, 0, sizeof(char) * 1001);
         linha_atual += 1;
     }
+
     fclose(input);
     fclose(output);
     remove("AlunosCadastrados.csv");
