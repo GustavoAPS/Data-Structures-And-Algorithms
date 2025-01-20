@@ -1,3 +1,6 @@
+import random
+
+
 # Pythonic swap function
 def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
@@ -32,9 +35,10 @@ def quick_sort(arr, low, high):
         quick_sort(arr, middle + 1, high)  # Right of pivot
 
 
-# Example Usage
-arr = [3, 2, 5, 0, 1, 8, 7, 6, 9, 4]
-print(f"\nBefore quick sort \n{arr}\n")
+# List comprehension to generate 100 random numbers in the range of 1 to 100
+arr = [random.randint(1, 10**3) for x in range(10**1)]
+
+print(f"Before quick sort \n{arr}\n")
 
 quick_sort(arr, 0, len(arr) - 1)
 
