@@ -4,23 +4,53 @@ If you're preparing for **Data Structures and Algorithms (DSA)**, focus on the f
 
 ---
 
-## 1. Data Structures
+## Basics
+- **recursion**
+
+## Data Structures
 These are foundational and often the starting point:
 
 ### Linear Data Structures
-- **Arrays**: Basics, 2D arrays, operations (insert, delete, search).
-- **Linked Lists**: Single, doubly, and circular linked lists.
-- **Stacks**: LIFO operations, implementation using arrays or linked lists, applications (e.g., parentheses matching).
-- **Queues**: FIFO operations, types (simple, circular, and priority queues).
-- **Hash Tables/Hash Maps**: Hashing concepts, collision resolution (chaining, open addressing).
+
+- **Arrays**
+    - Basics
+    - 2D arrays
+    - Operations
+
+- **Linked Lists**
+    - Single
+    - Doubly
+    - Circular linked lists.
+
+- **Stacks**
+    - LIFO operations
+    - implementation using arrays or linked lists 
+    - applications (e.g., parentheses matching).
+
+- **Queues**
+    - FIFO operations
+    - types (simple, circular, and priority queues).
+
+- **Hash Tables/Hash Maps**
+    - Hashing concepts
+    - collision resolution (chaining, open addressing).
+
 
 ### Non-Linear Data Structures
-- **Trees**: Binary trees, binary search trees (BST), AVL trees, heaps (min/max heap), and tries.
-- **Graphs**: Representation (adjacency matrix, adjacency list), directed and undirected graphs.
 
----
+- **Trees**
+    - Binary trees
+    - binary search trees (BST)
+    - AVL trees 
+    - heaps (min/max heap)
+    - tries
 
-## 2. Algorithms
+- **Graphs**: 
+    - Representation (adjacency matrix, adjacency list)
+    - Directed and undirected graphs.
+
+
+## Algorithms
 Algorithms are key to solving real-world problems efficiently:
 
 ### Searching Algorithms
@@ -78,15 +108,11 @@ Algorithms are key to solving real-world problems efficiently:
 - Fenwick Trees (Binary Indexed Tree)
 - KMP (Knuth-Morris-Pratt) for string matching
 
----
-
 ## 3. Complexity Analysis
 Understanding how to analyze the performance of algorithms is critical:
 - **Time Complexity**: Big-O, Big-Theta, Big-Omega
 - **Space Complexity**
 - Best, worst, and average-case scenarios
-
----
 
 ## 4. Problem-Solving Patterns
 Many interview problems are based on patterns:
@@ -96,21 +122,22 @@ Many interview problems are based on patterns:
 - **Greedy Choice Property**: Making optimal local choices
 - **Graph Traversal**: Using BFS/DFS for paths and connectivity
 
----
-
 ## 5. Real-World Scenarios
 - **Matrix Problems**: Traversals, pathfinding (e.g., number of islands)
 - **String Algorithms**: Anagrams, palindromes, substring search
 - **Interval Problems**: Merging intervals, meeting rooms
 - **Bit Manipulation**: XOR tricks, subset generation, bit masking
 
----
+
 
 ## How to Approach DSA Study
-1. **Start with Basics**: Focus on arrays, strings, and recursion to build a strong foundation.
-2. **Practice Easy Problems**: Solve problems on platforms like LeetCode, HackerRank, or Codeforces.
-3. **Focus on Medium-Level Problems**: Gradually increase difficulty while learning patterns.
-4. **Master Core Topics**: Dynamic programming, graph algorithms, and greedy techniques often appear in interviews.
-5. **Consistency Is Key**: Daily practice will help reinforce concepts.
 
----
+1. **Start with Basics**: Focus on arrays, strings, and recursion to build a strong foundation.
+
+2. **Practice Easy Problems**: Solve problems on platforms like LeetCode, HackerRank, or Codeforces.
+
+3. **Focus on Medium-Level Problems**: Gradually increase difficulty while learning patterns.
+
+4. **Master Core Topics**: Dynamic programming, graph algorithms, and greedy techniques often appear in interviews.
+
+5. **Consistency Is Key**: Daily practice will help reinforce concepts.

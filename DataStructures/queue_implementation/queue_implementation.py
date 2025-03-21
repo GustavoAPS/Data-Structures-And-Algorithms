@@ -1,4 +1,4 @@
-# Queue is a linear data structure that stores items in a First In First Out manner.
+# Queue is a linear data structure that stores items in a First In First Out.
 # Operations associated with a queue:
 #     - Enqueue, Adds an item from the queue O(1), if full overflow
 #     - Dequeue, Removes an item from the queue, O(1) if empty underflow
